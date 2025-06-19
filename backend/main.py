@@ -8,7 +8,6 @@ from typing import List
 
 app = FastAPI()
 
-# Configure CORS
 frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 allowed_origins = [frontend_url, "http://localhost:5173"]
 
