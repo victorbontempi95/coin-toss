@@ -10,7 +10,11 @@ app = FastAPI()
 
 # Configure CORS
 frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
-allowed_origins = [frontend_url, "http://localhost:5173"]
+allowed_origins = [
+    frontend_url,
+    "http://localhost:5173",
+    "https://coin-toss-frontend-production.up.railway.app"  # Explicitly add your frontend
+]
 
 # Add additional origins if specified
 if os.getenv("ADDITIONAL_ORIGINS"):
@@ -54,7 +58,11 @@ game_states = {}
 
 @app.get("/")
 def read_root():
-    return {"message": "Coin Toss Volatility Demo API"}
+    return {
+        "message": "Coin Toss Volatility Demo API",
+        "allowed_origins": allowed_origins,
+        "frontend_url_env": os.getenv("FRONTEND_URL", "not set")
+    }
 
 
 @app.post("/api/coin-toss/{player_id}")
