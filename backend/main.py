@@ -8,21 +8,20 @@ from typing import List
 
 app = FastAPI()
 
-# Temporarily allow all origins to fix CORS
+# Configure CORS
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+allowed_origins = [frontend_url, "http://localhost:5173"]
+
+# Add additional origins if specified
+if os.getenv("ADDITIONAL_ORIGINS"):
+    additional = os.getenv("ADDITIONAL_ORIGINS").split(",")
+    allowed_origins.extend([origin.strip() for origin in additional])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://ct-frontend-production.up.railway.app",
-        "http://localhost:5173",
-    ],
+    allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=[
-        "GET",
-        "POST",
-        "PUT",
-        "DELETE",
-        "OPTIONS",
-    ],  # Explicitly include OPTIONS
+    allow_methods=["*"],
     allow_headers=["*"],
     expose_headers=["*"],
 )

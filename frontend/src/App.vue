@@ -529,7 +529,7 @@ export default {
     const runInitialSimulation = async () => {
       loading.value = true
       try {
-        const response = await fetch(`https://ct-backend-production-0418.up.railway.app/api/simulate/${playerId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/simulate/${playerId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -567,7 +567,7 @@ export default {
 
       loading.value = true
       try {
-        const response = await fetch(`https://ct-backend-production-0418.up.railway.app/api/coin-toss/${playerId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/coin-toss/${playerId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -604,7 +604,7 @@ export default {
     const runSimulation = async (type) => {
       loading.value = true
       try {
-        const response = await fetch(`https://ct-backend-production-0418.up.railway.app/api/simulate/${playerId}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/simulate/${playerId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -639,7 +639,7 @@ export default {
     const resetGame = async () => {
       loading.value = true
       try {
-        await fetch(`https://ct-backend-production-0418.up.railway.app/api/reset-game/${playerId}`, {
+        await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/reset-game/${playerId}`, {
           method: 'POST'
         })
         
