@@ -1524,15 +1524,26 @@ export default {
   }
 }
 
-/* Responsive Design */
+/* Responsive Design - REPLACE your existing @media sections with this */
 @media (max-width: 1200px) {
   .trading-interface {
     grid-template-columns: 1fr;
     gap: 20px;
   }
   
+  /* Controls panel (with simulate button) goes first */
+  .controls-panel {
+    order: 1;
+  }
+  
+  /* Chart panel goes second */
   .chart-panel {
-    order: -1;
+    order: 2;
+  }
+  
+  /* Stats panel goes third */
+  .stats-panel {
+    order: 3;
   }
 }
 
