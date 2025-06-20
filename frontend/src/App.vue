@@ -121,6 +121,31 @@
         <button class="back-btn" @click="currentPage = 'intro'">← Back</button>
       </div>
 
+      <div class="simulation-section-mobile">
+        <h4 class="section-title">Quick Simulation</h4>
+        
+        <div class="simulation-controls">
+          <div class="input-group">
+            <label class="setting-label">Number of Tosses</label>
+            <input 
+              type="number" 
+              v-model.number="simulationRounds" 
+              class="setting-input"
+              min="1"
+              max="1000"
+            >
+          </div>
+        </div>
+
+        <button 
+          class="sim-btn"
+          @click="runSimulation('random')"
+          :disabled="loading"
+        >
+          {{ loading ? 'Processing...' : 'Run Simulation' }}
+        </button>
+      </div>
+
       <!-- Rest of your existing simulator interface... -->
       <div class="trading-interface">
         <!-- Stats Panel - UPDATED to fix win/loss tracking -->
@@ -1048,6 +1073,8 @@ export default {
   color: #a0a3b1;
   margin-bottom: 0;
 }
+
+
 
 /* Trading Interface */
 .trading-interface {
